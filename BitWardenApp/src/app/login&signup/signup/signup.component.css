@@ -63,7 +63,7 @@ h1{
     border-bottom-left-radius: 5px;
     height: 33px;
 }
-i{
+.eyeicon{
     border :1px solid gray;
     padding: 7px;
     color: gray;
@@ -106,4 +106,9 @@ i{
 .login a{
     text-decoration: none;
     font-family: sans-serif;
+}
+.error{
+    color: brown;
+    font-family: sans-serif;
+    font-size: 14px;
 }
