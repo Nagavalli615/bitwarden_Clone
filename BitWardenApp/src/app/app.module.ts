@@ -10,6 +10,7 @@ import { PersonalComponent } from './btwarden/personal/personal.component';
 import { LoginComponent } from './login&signup/login/login.component';
 import { SignupComponent } from './login&signup/signup/signup.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { CreateaccpageComponent } from './login&signup/createaccpage/createaccpage.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
     PersonalComponent,
     LoginComponent,
     SignupComponent,
+    CreateaccpageComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,14 @@ export class SignupComponent implements OnInit {
     const reMasterPassword = formGroup.get('ReMasterpassword').value;
     return masterPassword === reMasterPassword ? null : { passwordMismatch: true };
   };
+  forminvalid(){
+    if(this.formgroup.invalid){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
  submitdata() {
     if (this.formgroup.valid) {
       var formdata = this.formgroup.value;
@@ -36,8 +44,5 @@ export class SignupComponent implements OnInit {
     } else {
       console.log('Form is invalid');
     }
-  }
-  checkpsw(value:any){
-    
   }
 }
