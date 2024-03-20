@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, } from '@angular/forms';
-
-
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -9,33 +7,37 @@ import { FormControl, FormGroup, Validators, } from '@angular/forms';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  formgroup: FormGroup;
 
   constructor() { }
+
   ngOnInit() {
- 
+    this.formgroup = new FormGroup({
+      Email: new FormControl('', [Validators.required, Validators.email]),
+      Name: new FormControl('', Validators.required),
+      Masterpassword: new FormControl('', Validators.required),
+      ReMasterpassword: new FormControl('', Validators.required),
+      MasterpasswordHint: new FormControl('')
+    }, { validators: this.passwordMatchValidator });
   }
-  formgroup = new FormGroup({
-    Email : new FormControl ('', Validators.required),
-    Name:new FormControl('',Validators.required),
-    Masterpassword: new FormControl('',Validators.required),
-    ReMasterpassword: new FormControl ('',Validators.required),
-    MasterpasswordHint:new FormControl('',Validators.required)
-  });
-    
-  
 
-
-  submitdata(){
-    try{
+  passwordMatchValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
+    const masterPassword = formGroup.get('Masterpassword').value;
+    const reMasterPassword = formGroup.get('ReMasterpassword').value;
+    return masterPassword === reMasterPassword ? null : { passwordMismatch: true };
+  };
+ submitdata() {
+    if (this.formgroup.valid) {
       var formdata = this.formgroup.value;
-
-      console.log(formdata.value[0])
-       console.log(formdata);
-      // localStorage.setItem('userdata',JSON.stringify(formdata));
+      console.log(formdata);
+      //console.log(formdata.Email);
+      // Handle form submission here
       this.formgroup.reset();
+    } else {
+      console.log('Form is invalid');
     }
-    catch(ex){
-      console.log("form data not fetch",ex)
-    }
+  }
+  checkpsw(value:any){
+    
   }
 }
